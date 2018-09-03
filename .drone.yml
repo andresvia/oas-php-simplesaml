@@ -1,0 +1,14 @@
+pipeline:
+  get_simplesaml:
+    image: centos
+    commands:
+      - curl --silent --location --fail --show-error --output simplesamlphp-1.14.7.tar.gz https://github.com/simplesamlphp/simplesamlphp/releases/download/v1.14.7/simplesamlphp-1.14.7.tar.gz
+      - tar xzf simplesamlphp-1.14.7.tar.gz
+      - mv simplesamlphp-1.14.7/www simplesamlphp-1.14.7/simplesaml
+
+  publish:
+    image: oasplugins/s2i
+    destimg: oas0/oas-php-simplesaml:${DRONE_COMMIT:0:7}
+    secrets:
+      - docker_username
+      - docker_password
