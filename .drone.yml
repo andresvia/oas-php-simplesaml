@@ -4,7 +4,8 @@ pipeline:
     commands:
       - curl --silent --location --fail --show-error --output simplesamlphp-1.14.7.tar.gz https://github.com/simplesamlphp/simplesamlphp/releases/download/v1.14.7/simplesamlphp-1.14.7.tar.gz
       - tar xzf simplesamlphp-1.14.7.tar.gz
-      - mv simplesamlphp-1.14.7/www simplesamlphp-1.14.7/simplesaml
+      - mkdir -p src
+      - mv simplesamlphp-1.14.7/www src/simplesaml
 
   publish:
     image: oasplugins/s2i
